@@ -1,0 +1,55 @@
+* {
+  background-color: pink;
+}
+
+h1 {
+  background-color: red;
+  display: block;
+  margin:auto;
+  text-align: center;
+  font-size: 100px;
+  font-family: 'Pangolin', cursive;
+}
+
+h2 {
+  color: grey;
+  font-family: arial;
+}
+
+img {
+  display: block;
+    margin: auto;
+  }
+
+#leftmenu {
+  background-color: green;
+  float: left;
+  width: 500px;
+  height: 680px;
+  font-size: 40px;
+  text-align: center;
+  padding: 15px;
+  margin: 50px;
+}
+
+#rightmenu {
+  float: right;
+  width: 500px;
+  height: 680px;
+  font-size: 40px;
+  text-align: center;
+  padding: 15px;
+  margin: 50px;
+  background-color: blue;
+}
+p{
+  font-family: "Times New Roman", Times, serif;
+  color: red;
+}
+
+#foot {
+  position: fixed;
+  display:block;
+  margin:auto;
+  text-align: left;
+}

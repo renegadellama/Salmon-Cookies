@@ -1,6 +1,12 @@
-#first-user-heading{
-  font-family: impact;
+*{
+  background-color: grey;
 }
-h1{
-  color: red;
+
+h2 {
+  color: black;
+  font-size: 24px;
+  text-align: center;
+}
+section {
+  text-align: center;
 }
