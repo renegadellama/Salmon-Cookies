@@ -62,6 +62,17 @@ function runAllStoreData() {
   }
 };
 
+function runStorHourTotals(){
+  var total = 0
+  for (var i = 0; i < storeTimes.length - 1; i++) {
+    for (var j = 0; j < storeArray.length; j++) {
+      console.log(storeArray[j]);
+      // total += storeArray[j] 
+
+    }
+  }
+}
+
 var tableEl = document.createElement('table');
 
 var sectionEl = document.getElementById('cookie-table');
