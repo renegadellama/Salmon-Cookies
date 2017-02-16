@@ -117,7 +117,7 @@ var runTableTimes = function(){
     }
   };
 };
-runFormStoreData();
+
 runTableTimes();
 runAllStoreData();
 
