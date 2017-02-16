@@ -1,7 +1,7 @@
 'use strict';
 
-function CookieStore(idTag, storeName, minHourCustomers, maxHourCustomers, avgCookiesPerCustomer){
-  this.idTag = idTag;
+//-------------------------CONSTRUCTOR OBJECT-------------------
+function CookieStore(storeName, minHourCustomers, maxHourCustomers, avgCookiesPerCustomer){
   this.storeName = storeName;
   this.minHourCustomers = minHourCustomers;
   this.maxHourCustomers = maxHourCustomers;
@@ -9,7 +9,35 @@ function CookieStore(idTag, storeName, minHourCustomers, maxHourCustomers, avgCo
   this.hourlyCookies = [];
   this.totalSales = 0;
 };
+//-------------------------------FORM----------------------------
+var storeFormEl = document.getElementById('new-store-form');
 
+storeFormEl.addEventListener('submit', handleSubmit);
+function handleSubmit(event){
+    // var formStore = new CookieStore(formNewStoreName, formMinCustomers, formMaxCustomers, formAvgCookies);
+  event.preventDefault();
+  event.stopPropagation(); //stops all bubbling/capturing
+  var formNewStoreName = event.target.cookieStoreName.value;
+  var formMinCustomers = parseInt(event.target.minCust.value);
+  var formMaxCustomers = parseInt(event.target.maxCust.value);
+  var formAvgCookies = parseFloat(event.target.avgCust.value);
+
+   //VERY IMPORTANT! This function pulls the data in the selected field.
+  //event = whole element, target = storeFormEl, cookieStoreName = the specific input node, value = input inside of text field.
+  // console.log(formNewStoreName, formMinCustomers, formMaxCustomers, formAvgCookies);
+  var formStore = new CookieStore(formNewStoreName, formMinCustomers, formMaxCustomers, formAvgCookies);
+  console.log(formStore);
+  console.log('User pressed submit button on form');
+  console.log(storeArray);
+  formStoreArray.push(formStore);
+  formStore.getAvgCookieCount();
+  formStore.avgSales();
+  formStore.sumSales();
+  formStore.populateTable();
+
+};
+
+//-------------------------------METHODS---------------------------------
 
 CookieStore.prototype.getAvgCookieCount = function() {
   return Math.floor(Math.random() * (this.maxHourCustomers + 1 - this.minHourCustomers) + this.minHourCustomers);
@@ -46,14 +74,20 @@ CookieStore.prototype.populateTable = function() {
   rowEl.appendChild(fieldTotal);
   tableEl.appendChild(rowEl);
 };
+//-----------------------------------VARIABLES----------------------------
+var pikePlace = new CookieStore('Pike Place', 23, 65, 6.3);
+var seaTac = new CookieStore('SeaTac', 3, 24, 1.2);
+var seaCenter = new CookieStore('Seattle Center', 11, 38, 3.7);
+var capHill = new CookieStore('Capitol Hill', 20, 38, 2.8);
+var alKai = new CookieStore('Alkai', 2, 16, 4.6);
 
-var pikePlace = new CookieStore('pike', 'Pike Place', 23, 65, 6.3);
-var seaTac = new CookieStore('seatac', 'SeaTac', 3, 24, 1.2);
-var seaCenter = new CookieStore('seacent', 'Seattle Center', 11, 38, 3.7);
-var capHill = new CookieStore('caphill', 'Capitol Hill', 20, 38, 2.8);
-var alKai = new CookieStore('alkai', 'Alkai', 2, 16, 4.6);
 var storeArray = [pikePlace, seaTac, seaCenter, capHill, alKai];
+var formStoreArray = [];
+
+
 var storeTimes = ['Location', '6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm', 'Total'];
+
+//-----------------------------FUNCTIONS-----------------------------------
 
 function runAllStoreData() {
   for (var i = 0; i < storeArray.length; i++) {
@@ -87,10 +121,17 @@ var runTableTimes = function(){
   }
 
   tableEl.appendChild(tableTimes);
+  function runAllStoreData() {
+    for (var i = 0; i < storeArray.length; i++) {
+      storeArray[i].avgSales();
+      storeArray[i].sumSales();
+    }
+  };
 };
 
 runTableTimes();
 runAllStoreData();
+
 
 var footerEl = document.createElement('tr');
 tableEl.appendChild(footerEl);

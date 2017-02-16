@@ -5,9 +5,28 @@
     <title></title>
   </head>
   <body>
-    <section id="cookie-table">
+    <div class="">
+      <section id="cookie-table">
 
-    </section>
+      </section>
+    </div>
+
+    <div class="form">
+    <form id="new-store-form">
+      <fieldset>
+        <legend>Enter New Cookie Store Info</legend>
+        <label for="cookieStoreName">Cookie Store Name:</label>
+        <input type="text" name="cookieStoreName" value="The Gutta">
+        <label for="minCust">Minimum Customers/Hour:</label>
+        <input type="text" name="minCust" value="3">
+        <label for="maxCust">Maximum Customers/Hour:</label>
+        <input type="text" name="maxCust" value="4">
+        <label for="avgCust">Average Customers Per Hour</label>
+        <input type="text" name="avgCust" value="2.9">
+        <button type="submit">SUBMIT</button>
+      </fieldset>
+    </form>
+  </div>
     <script src="salesapp.js" ></script>
   </body>
 </html>
