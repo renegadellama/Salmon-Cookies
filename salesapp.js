@@ -29,7 +29,7 @@ function handleSubmit(event){
   console.log(formStore);
   console.log('User pressed submit button on form');
   console.log(storeArray);
-  formStoreArray.push(formStore);
+  formStoreArray.splice(formStore, 5);
   formStore.getAvgCookieCount();
   formStore.avgSales();
   formStore.sumSales();
@@ -74,6 +74,7 @@ CookieStore.prototype.populateTable = function() {
   rowEl.appendChild(fieldTotal);
   tableEl.appendChild(rowEl);
 };
+
 //-----------------------------------VARIABLES----------------------------
 var pikePlace = new CookieStore('Pike Place', 23, 65, 6.3);
 var seaTac = new CookieStore('SeaTac', 3, 24, 1.2);
@@ -83,7 +84,8 @@ var alKai = new CookieStore('Alkai', 2, 16, 4.6);
 
 var storeArray = [pikePlace, seaTac, seaCenter, capHill, alKai];
 var formStoreArray = [];
-
+var hourlyTotalsStorage = [];
+var allTotal = 0;
 
 var storeTimes = ['Location', '6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm', 'Total'];
 
@@ -96,17 +98,35 @@ function runAllStoreData() {
   }
 };
 
-function runStorHourTotals(){
-  var total = 0
-  for (var i = 0; i < storeTimes.length - 1; i++) {
+function runStoreHourTotals(){
+  var total = 0;
+
+  for (var i = 0; i < storeTimes.length - 2; i++) {
+    var hourlyTotal = 0;
     for (var j = 0; j < storeArray.length; j++) {
-      console.log(storeArray[j]);
-      // total += storeArray[j] 
+      console.log(storeArray[j].hourlyCookies[i]);
+      total += storeArray[j].hourlyCookies[i];
+      hourlyTotal += storeArray[j].hourlyCookies[i];
 
     }
+    hourlyTotalsStorage.push(hourlyTotal);
   }
+  console.log('TOTAL:', total);
+  console.log('HourlyTotal', hourlyTotalsStorage);
 }
 
+var sumEverything = function(){
+  var total = 0;
+  for ( var i = 0; i < hourlyTotalsStorage.length; i++ ){
+    total += hourlyTotalsStorage[i];
+  }
+  // console.log(total);
+  allTotal = total;
+  console.log(allTotal);
+  // this.totalSales = total;
+  return total;
+};
+//--------------------TABLE---------------------------------------------------
 var tableEl = document.createElement('table');
 
 var sectionEl = document.getElementById('cookie-table');
@@ -128,14 +148,27 @@ var runTableTimes = function(){
     }
   };
 };
+var runTimeTotals = function() {
+  var timeTotals = document.createElement('tfoot');
+  tableEl.appendChild(timeTotals);
+  var footTitle = document.createElement('th');
+  footTitle.textContent = 'Totals';
+  timeTotals.appendChild(footTitle);
+  for (var i = 0; i < hourlyTotalsStorage.length; i++) {
+    var fieldEl = document.createElement('td');
+    fieldEl.textContent = hourlyTotalsStorage[i];
+    timeTotals.appendChild(fieldEl);
+  }
+  // fieldEl.textContent = allTotal;
+  // timeTotals.appendChild(fieldEl);
+};
 
+//-----------------------------CALL FUNCTIONS--------------------------------------
 runTableTimes();
 runAllStoreData();
-
-
-var footerEl = document.createElement('tr');
-tableEl.appendChild(footerEl);
-
+runStoreHourTotals();
+runTimeTotals();
+sumEverything();
 for(var i = 0; i < storeArray.length; i++){
   storeArray[i].populateTable();
 };
