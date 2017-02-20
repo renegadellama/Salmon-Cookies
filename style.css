@@ -1,5 +1,21 @@
 *{
-  background-color: grey;
+  background-color: lightblue;
+}
+
+h1{
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-color: pink;
+  border: solid;
+  border-width: 8px;
+  border-top-color: black;
+  border-bottom-color: black;
+  border-left-color: grey;
+  border-right-color: grey;
+  font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 h2 {
@@ -7,6 +23,19 @@ h2 {
   font-size: 24px;
   text-align: center;
 }
+
 section {
   text-align: center;
+}
+
+table{
+  border: solid;
+  border-width: 5px;
+  text-align: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+th, td{
+  border: solid;
+  border-width: 2px;
 }
