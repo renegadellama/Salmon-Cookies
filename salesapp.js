@@ -87,7 +87,7 @@ var formStoreArray = [];
 var hourlyTotalsStorage = [];
 var allTotal = 0;
 
-var storeTimes = ['Location', '6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm', 'Total'];
+var storeTimes = ['Location', '6:00AM', '7:00AM', '8:00AM', '9:00AM', '10:00AM', '11:00AM', '12:00PM', '1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM', 'Total'];
 
 //-----------------------------FUNCTIONS-----------------------------------
 
@@ -100,7 +100,6 @@ function runAllStoreData() {
 
 function runStoreHourTotals(){
   var total = 0;
-
   for (var i = 0; i < storeTimes.length - 2; i++) {
     var hourlyTotal = 0;
     for (var j = 0; j < storeArray.length; j++) {
@@ -148,27 +147,33 @@ var runTableTimes = function(){
     }
   };
 };
+
+
+
 var runTimeTotals = function() {
   var timeTotals = document.createElement('tfoot');
   tableEl.appendChild(timeTotals);
   var footTitle = document.createElement('th');
   footTitle.textContent = 'Totals';
   timeTotals.appendChild(footTitle);
-  for (var i = 0; i < hourlyTotalsStorage.length; i++) {
+  for (var i = 0; i < hourlyTotalsStorage.length + 1; i++) {
     var fieldEl = document.createElement('td');
     fieldEl.textContent = hourlyTotalsStorage[i];
     timeTotals.appendChild(fieldEl);
   }
-  // fieldEl.textContent = allTotal;
-  // timeTotals.appendChild(fieldEl);
+  timeTotals.appendChild(fieldEl);
+  fieldEl.textContent = allTotal;
+
 };
 
 //-----------------------------CALL FUNCTIONS--------------------------------------
 runTableTimes();
 runAllStoreData();
 runStoreHourTotals();
-runTimeTotals();
 sumEverything();
+runTimeTotals();
+
+
 for(var i = 0; i < storeArray.length; i++){
   storeArray[i].populateTable();
 };
