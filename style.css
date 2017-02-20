@@ -1,20 +1,24 @@
-*{
-  background-color: lightblue;
+
+body{
+  background:url("https://images.unsplash.com/photo-1455511218844-4b359797ad40?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=");
+  background-size: 100%;
 }
 
 h1{
   text-align: center;
-  width: 100%;
+  width: 90%;
   height: auto;
-  background-color: pink;
+  background-color: #55709e;
   border: solid;
   border-width: 8px;
-  border-top-color: black;
-  border-bottom-color: black;
+  border-top-color: #afbed8;
+  border-bottom-color: #afbed8;
   border-left-color: grey;
   border-right-color: grey;
   font-size: 50px;
   font-family: 'Montserrat', sans-serif;
+  margin:auto;
+
 
 }
 
@@ -32,10 +36,53 @@ table{
   border: solid;
   border-width: 5px;
   text-align: center;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #55709e;
+  color: black;
+  font-weight: bold;
+  font-family: arial;
+  font-size: 15px;
 }
+
+#tablebg {
+
+  display: inline;
+  width:550px;
+  height: 250px;
+  text-align: center;
+
+}
+
 th, td{
   border: solid;
   border-width: 2px;
+}
+
+form {
+  text-align: center;
+  border: solid;
+  border-width: 6px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: #b71919;
+  font-family: arial;
+  font-weight: bold;
+}
+
+input {
+  width: 30px;
+  text-align: center;
+}
+
+#storenamefield {
+  width:150px;
+}
+
+#formheader {
+  font-size: 25px;
+}
+
 }
